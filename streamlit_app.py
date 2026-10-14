@@ -133,7 +133,7 @@ if submitted:
 
     try:
         response = requests.post(
-            "http://127.0.0.1:8000/predict",
+            "https://hr-analytics-pro.onrender.com/predict",
             json={"employee_data": employee_data},
             timeout=30
         )
