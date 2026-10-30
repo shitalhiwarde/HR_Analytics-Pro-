@@ -19,6 +19,11 @@ class EmployeeData(BaseModel):
 def home():
     return {"message": "HR Analytics Pro API is running!"}
 
+@app.get("/metrics")
+def get_metrics():
+    metrics = joblib.load("hr_metrics.joblib")
+    return metrics
+
 
 @app.post("/predict")
 def predict(data: EmployeeData):

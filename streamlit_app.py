@@ -1,5 +1,6 @@
 import streamlit as st
 import requests
+from backend.hr_chatbot import ask_hr_ai
 
 st.set_page_config(
     page_title="HR Analytics Pro",
@@ -8,6 +9,31 @@ st.set_page_config(
 )
 
 st.title("👥 HR Analytics Pro")
+
+st.subheader("📊 Model Performance")
+
+try:
+    metrics_response = requests.get(
+        "http://127.0.0.1:8000/metrics",
+        timeout=10
+    )
+
+    if metrics_response.status_code == 200:
+        metrics = metrics_response.json()
+
+        col1, col2, col3, col4 = st.columns(4)
+
+        col1.metric("Accuracy", f"{metrics['accuracy']:.2%}")
+        col2.metric("Precision", f"{metrics['precision']:.2%}")
+        col3.metric("Recall", f"{metrics['recall']:.2%}")
+        col4.metric("F1-Score", f"{metrics['f1_score']:.2%}")
+
+    else:
+        st.warning("Metrics not available. Please train the model.")
+
+except requests.exceptions.RequestException:
+    st.warning("Backend is not connected.")
+
 st.subheader("Employee Attrition Prediction")
 st.write("Enter employee details to predict attrition.")
 
@@ -133,7 +159,7 @@ if submitted:
 
     try:
         response = requests.post(
-            "https://hr-analytics-pro.onrender.com/predict",
+            "http://127.0.0.1:8000/predict",
             json={"employee_data": employee_data},
             timeout=30
         )
@@ -159,3 +185,30 @@ if submitted:
     except requests.RequestException as error:
         st.error("Backend connection failed. Check whether FastAPI is running.")
         st.write(str(error))
+
+
+
+
+st.divider()
+
+st.header("🤖 HR AI Assistant")
+
+st.write("Ask any HR or Employee Attrition question.")
+
+question = st.text_input(
+    "Enter your question",
+    placeholder="Why do employees leave the company?"
+)
+
+if st.button("Ask AI"):
+    if question:
+        with st.spinner("AI is thinking..."):
+            try:
+                answer = ask_hr_ai(question)
+                st.success("AI Answer")
+                st.write(answer)
+
+            except Exception as e:
+                st.error(f"Error: {e}")
+    else:
+        st.warning("Please enter a question.")
