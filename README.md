@@ -2,57 +2,69 @@ HR Analytics Pro
 
 Project Overview
 
-HR Analytics Pro is a machine learning project that predicts employee attrition using HR employee data.
+HR Analytics Pro is a Full Stack Data Science project that analyzes employee data and predicts employee attrition using Machine Learning. It also includes an AI-powered HR Assistant using Groq and LangChain.
 
 Technologies Used
 
 - Python
-- Pandas
+- Pandas, NumPy
 - Scikit-learn
+- Random Forest Classifier
 - FastAPI
 - Streamlit
+- LangChain
+- Groq API
 - Joblib
-
-Project Structure
-
-- "backend/" — model training and prediction API
-- "data/" — HR employee dataset
-- "streamlit_app.py" — Streamlit user interface
-- "requirements.txt" — Python dependencies
 
 Features
 
-- Employee attrition prediction
-- Machine learning model using Random Forest
-- FastAPI prediction endpoint
-- Streamlit frontend
+- Employee Attrition Prediction
+- Random Forest Machine Learning Model
+- HR Analytics Dashboard
+- Employee Attrition Insights
+- FastAPI Prediction Backend
+- Streamlit Frontend
+- AI-powered HR Chatbot using Groq and LangChain
+
+Project Structure
+
+- "backend/" – Model training, prediction API and chatbot
+- "data/" – HR employee dataset
+- "streamlit_app.py" – Streamlit user interface
+- "requirements.txt" – Project dependencies
 
 How to Run
 
-1. Install dependencies
+1. Install Dependencies
 
 pip install -r requirements.txt
 
-2. Start the backend
+2. Start Backend
+
+Open a terminal and run:
 
 cd backend
-python -m uvicorn app:app --reload
+.venv\Scripts\python.exe -m uvicorn app:app --reload
 
-3. Start the frontend
+3. Start Frontend
 
-Open a second terminal in the main project folder and run:
+Open another terminal in the main project folder:
 
 python -m streamlit run streamlit_app.py
 
-API Documentation
+4. Access the Application
 
-When the backend is running, visit:
-"http://127.0.0.1:8000/docs"
+- Frontend: http://localhost:8501
+- API Documentation: http://127.0.0.1:8000/docs
 
-Frontend
+AI Chatbot Setup
 
-"http://localhost:8501"
+Create a ".env" file inside the "backend/" folder and add your Groq API key:
+
+GROQ_API_KEY=your_groq_api_key
+
+Never upload your API key to GitHub.
 
 Purpose
 
-This project demonstrates machine learning, model deployment, and a user interface for employee attrition prediction.
+This project demonstrates practical skills in Machine Learning, Data Analytics, API Development, Full Stack Data Science and Generative AI.
