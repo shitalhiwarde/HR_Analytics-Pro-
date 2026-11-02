@@ -14,7 +14,7 @@ st.subheader("📊 Model Performance")
 
 try:
     metrics_response = requests.get(
-        "http://127.0.0.1:8000/metrics",
+        "https://hr-analytics-pro-pro-backend.onrender.com/metrics",
         timeout=10
     )
 
@@ -159,7 +159,7 @@ if submitted:
 
     try:
         response = requests.post(
-            "http://127.0.0.1:8000/predict",
+            "https://hr-analytics-pro-pro-backend.onrender.com/predict",
             json={"employee_data": employee_data},
             timeout=30
         )
